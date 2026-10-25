@@ -518,6 +518,31 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 .pad-slider{display:grid;margin-top:14px}
 .pad-slide{grid-area:1/1;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity 1s ease,transform 1s ease,visibility 0s 1s}
 .pad-slide.on{opacity:1;visibility:visible;transform:none;transition:opacity 1s ease .9s,transform 1s ease .9s,visibility 0s .9s}
+/* ── LLUVIA DE SOBRES ── */
+.env-rain{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.env-rain-item{position:absolute;top:-46px;will-change:transform;opacity:0}
+#regalos .env-stage{position:relative;z-index:1}
+.env-interactive{display:flex;flex-direction:column;align-items:center;cursor:pointer;-webkit-tap-highlight-color:transparent;outline:none;border:none;background:none;padding:0;margin:26px auto 0;opacity:0}
+.env-body{perspective:700px;position:relative;width:min(258px,74vw);aspect-ratio:260/200;filter:drop-shadow(0 10px 26px rgba(122,63,72,.2))}
+.env-body svg.env-svg{width:100%;height:100%;display:block}
+.env-flap-wrap{position:absolute;top:23%;left:6.9%;width:86.2%;height:43%;transform-origin:top center;transform-style:preserve-3d;backface-visibility:hidden;-webkit-backface-visibility:hidden;transition:transform .65s cubic-bezier(.4,0,.2,1);pointer-events:none;z-index:2}
+.env-interactive.open .env-flap-wrap{transform:rotateX(-175deg)}
+.env-seal{position:absolute;top:52%;left:50%;width:23%;aspect-ratio:1;transform:translate(-50%,-50%);z-index:3;transition:opacity .35s ease,transform .5s cubic-bezier(.4,0,.2,1);pointer-events:none}
+.env-interactive.open .env-seal{opacity:0;transform:translate(-50%,-50%) scale(.7)}
+.env-open-content{overflow:hidden;max-height:0;opacity:0;transition:max-height .55s .3s ease,opacity .4s .38s ease;display:flex;flex-direction:column;align-items:center;gap:8px;padding:0 16px;text-align:center;pointer-events:none}
+.env-interactive.open .env-open-content{max-height:300px;opacity:1;pointer-events:auto;margin-top:20px}
+.env-mailbox-icon{width:42px;height:42px;color:var(--gold);margin-top:6px}
+.env-title{font-family:'Pinyon Script',cursive;font-size:clamp(28px,8vw,34px);line-height:1.4;padding:.08em 0;background:var(--gold-grad);background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#9a5560;animation:goldFlow 7s ease-in-out infinite}
+.env-desc{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:500;font-style:italic;color:var(--text);opacity:.86;line-height:1.75;max-width:300px}
+.env-tap-hint{font-family:'Italiana',serif;font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-top:18px;opacity:0;transition:opacity .5s ease;position:relative;z-index:1}
+.env-tap-hint.show{opacity:.85;animation:envHintPulse 2.4s ease-in-out infinite}
+.env-interactive.open~.env-tap-hint{opacity:0!important;animation:none;pointer-events:none}
+@keyframes envHintPulse{0%,100%{opacity:.5}50%{opacity:.95}}
+.env-body.landed{animation:envBreathe 3.6s ease-in-out infinite}
+@keyframes envBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
+@media(prefers-reduced-motion:reduce){.env-body.landed,.env-tap-hint.show{animation:none!important}}
+
+@keyframes goldFlow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 /* Recintos en Cinzel */
 .loc-venue{font-family:'Cinzel',serif!important;font-weight:600!important;font-size:clamp(19px,5.2vw,23px)!important;letter-spacing:.06em!important;line-height:1.35!important;
   background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#9a5560}
@@ -545,6 +570,22 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 .btn-map svg{animation:rebote 2.6s ease-in-out infinite}
 @keyframes rebote{0%,40%,100%{translate:0 0}20%{translate:0 -4px}}
 @media(prefers-reduced-motion:reduce){.fam-card,.fam-padrinos,.loc-card,.btn-map,.btn-cal,.btn-map svg,.intro-logo{animation:none!important}}
+/* Dress code premium */
+.dc-fig svg{animation:dcFlota 5.2s ease-in-out infinite}
+.dc-fig + .dc-fig svg{animation-delay:-2.6s}
+@keyframes dcFlota{0%,100%{translate:0 0;filter:drop-shadow(0 4px 12px rgba(154,85,96,.18)) drop-shadow(0 0 2px rgba(246,214,216,.6))}
+  50%{translate:0 -8px;filter:drop-shadow(0 12px 20px rgba(154,85,96,.24)) drop-shadow(0 0 9px rgba(233,183,189,.95))}}
+.dc-avoid-circle{animation:bolitaFlota 4.2s ease-in-out infinite}
+@keyframes bolitaFlota{0%,100%{translate:0 0;box-shadow:0 2px 10px rgba(58,42,46,.18),0 0 6px rgba(246,214,216,.6),inset 0 1px 2px rgba(255,255,255,.3)}
+  50%{translate:0 -6px;box-shadow:0 10px 18px rgba(58,42,46,.16),0 0 18px rgba(233,183,189,.95),inset 0 1px 2px rgba(255,255,255,.3)}}
+.dc-avoid-circle::after{content:'';position:absolute;top:6px;left:9px;width:12px;height:7px;border-radius:50%;background:rgba(255,255,255,.95);filter:blur(1.5px);opacity:.9}
+
+/* Carrusel: reflejo debajo */
+.wheel-card{-webkit-box-reflect:below 8px linear-gradient(transparent 58%,rgba(255,255,255,.32))}
+.wheel-card{width:170px!important;height:238px!important;margin-left:-85px!important;margin-top:-119px!important}
+.wheel-scene{height:500px!important;margin-top:20px!important;perspective:1600px!important}
+.wheel-ring{top:-40px}
+@media(prefers-reduced-motion:reduce){.dc-fig svg,.dc-avoid-circle{animation:none!important}}
 #hero .hero-content{will-change:transform,opacity,filter}
 </style>
 </head>
@@ -873,29 +914,55 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
     <div class="invite-verse verse-interlude rv"><p class="invite-verse-end">Promete elegir el mismo corazón una vez más, porque cuando Dios une dos corazones con verdad, ni el tiempo, ni la distancia los podrá separar.</p></div>
   </section>
 
-  <!-- MESA DE REGALOS -->
+  <!-- LLUVIA DE SOBRES -->
   <section id="regalos" class="sec rv" style="text-align:center">
-    <span class="eyebrow">Mesa de Regalos</span>
-    <h2 class="heading">Un Obsequio</h2>
-    <div class="orn" style="margin-top:14px;margin-bottom:0"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
-    <!-- Gift icon -->
-    <div class="gift-icon-wrap rv">
-      <svg viewBox="0 0 72 64" width="68" height="60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M36 16 C32 5 20 1 16 8 C12 14 19 21 31 17 C33.5 16.2 36 16 36 16Z" fill="rgba(154,85,96,.1)" stroke="#9a5560" stroke-width="1.4" stroke-linejoin="round"/>
-        <path d="M36 16 C40 5 52 1 56 8 C60 14 53 21 41 17 C38.5 16.2 36 16 36 16Z" fill="rgba(154,85,96,.1)" stroke="#9a5560" stroke-width="1.4" stroke-linejoin="round"/>
-        <ellipse cx="36" cy="16" rx="4.5" ry="3.5" fill="rgba(154,85,96,.28)" stroke="#9a5560" stroke-width="1"/>
-        <rect x="6" y="16" width="60" height="13" rx="2" fill="rgba(154,85,96,.08)" stroke="#9a5560" stroke-width="1.3"/>
-        <rect x="33" y="16" width="6" height="13" fill="rgba(154,85,96,.2)"/>
-        <rect x="10" y="29" width="52" height="34" rx="2" fill="rgba(154,85,96,.05)" stroke="#9a5560" stroke-width="1.3"/>
-        <line x1="36" y1="29" x2="36" y2="63" stroke="#9a5560" stroke-width="1.3" opacity=".55"/>
-        <line x1="10" y1="46" x2="62" y2="46" stroke="#9a5560" stroke-width=".9" opacity=".32"/>
-      </svg>
-    </div>
-    <!-- Framed message -->
-    <div class="gift-frame rv">
-      <div class="g-corner tl"></div><div class="g-corner tr"></div>
-      <div class="g-corner bl"></div><div class="g-corner br"></div>
-      <p class="gift-msg" style="margin:0">Tu presencia es nuestro regalo más preciado. Si deseas obsequiarnos algo, tendremos <strong>lluvia de sobres</strong> el día de la boda.</p>
+    <div class="env-rain" id="envRain" aria-hidden="true"></div>
+    <div class="env-stage">
+      <span class="eyebrow">Celebra con Nosotros</span>
+      <h2 class="heading-sm">Lluvia de Sobres</h2>
+      <div class="orn" style="margin-top:14px;margin-bottom:0"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
+
+      <button class="env-interactive" id="envGift" type="button" aria-label="Sobre — toca para abrir" aria-expanded="false">
+        <div class="env-body" id="envGiftBody">
+          <svg class="env-svg" viewBox="0 0 260 200" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="envPaper" x1="0" y1="1" x2="1" y2="0">
+                <stop offset="0%" stop-color="#fffaf6"/><stop offset="100%" stop-color="#F7E7CE"/>
+              </linearGradient>
+            </defs>
+            <rect x="18" y="52" width="224" height="132" rx="8" fill="url(#envPaper)" stroke="rgba(154,85,96,.45)" stroke-width="1.4"/>
+            <path d="M18 184 L130 110 L242 184" stroke="rgba(154,85,96,.28)" stroke-width="1" fill="none"/>
+          </svg>
+          <div class="env-flap-wrap" aria-hidden="true">
+            <svg viewBox="0 0 224 86" preserveAspectRatio="none" style="width:100%;height:100%;display:block">
+              <defs>
+                <linearGradient id="envFlap" x1="0" y1="1" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#F7E7CE"/><stop offset="100%" stop-color="#fffaf6"/>
+                </linearGradient>
+              </defs>
+              <path d="M0 0 L112 86 L224 0 Z" fill="url(#envFlap)" stroke="rgba(154,85,96,.45)" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <svg class="env-seal" viewBox="0 0 60 60" aria-hidden="true">
+            <circle cx="30" cy="30" r="28" fill="#9a5560"/>
+            <circle cx="30" cy="30" r="28" fill="none" stroke="#6e3640" stroke-width="2" opacity=".55"/>
+            <circle cx="30" cy="30" r="21.5" fill="none" stroke="#f6d6d8" stroke-width="1.1" opacity=".9"/>
+            <text x="30" y="37" text-anchor="middle" font-family="'Pinyon Script', cursive" font-size="24" fill="#f6d6d8">M&amp;L</text>
+          </svg>
+        </div>
+        <div class="env-open-content" aria-live="polite">
+          <svg class="env-mailbox-icon" viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <rect x="8" y="22" width="36" height="24" rx="5"/>
+            <path d="M8 30 Q26 38 44 30"/>
+            <rect x="18" y="8" width="16" height="16" rx="2"/>
+            <path d="M18 8 Q26 3 34 8"/>
+            <rect x="20" y="28" width="12" height="2.5" rx="1.25" fill="currentColor" stroke="none" opacity=".4"/>
+          </svg>
+          <p class="env-title">Tu Presencia es Nuestro Regalo</p>
+          <p class="env-desc">El día del evento habrá una urna donde podrás depositar tu sobre con mucho cariño.</p>
+        </div>
+      </button>
+      <p class="env-tap-hint" id="envGiftHint">Toca para abrir</p>
     </div>
   </section>
 
@@ -1188,6 +1255,91 @@ function initMain(){
   gsap.fromTo('#hero .hero-content',{y:0,autoAlpha:1,filter:'blur(0px)'},{y:-140,autoAlpha:0,filter:'blur(12px)',ease:'none',
     scrollTrigger:{trigger:'#hero',start:'top top',end:'60% top',scrub:true}});
 
+  /* Lluvia de sobres — cae hasta que la sección se centra, ahí aterriza uno */
+  (function(){
+    var sec=document.getElementById('regalos'),rain=document.getElementById('envRain'),
+        btn=document.getElementById('envGift'),body=document.getElementById('envGiftBody'),
+        hint=document.getElementById('envGiftHint');
+    if(!sec||!rain||!btn)return;
+    var raining=true,landed=false,spawnCall=null,alive=0;
+    var MAX_ALIVE=18;
+
+    function makeEnvelope(){
+      if(alive>=MAX_ALIVE)return;
+      alive++;
+      var el=document.createElementNS('http://www.w3.org/2000/svg','svg');
+      el.setAttribute('viewBox','0 0 34 24');
+      el.setAttribute('class','env-rain-item');
+      var w=16+Math.random()*16;
+      el.style.width=w+'px';el.style.height=(w*24/34)+'px';
+      el.style.left=(Math.random()*100)+'%';
+      var gid='eg'+Math.random().toString(36).slice(2,7);
+      el.innerHTML='<defs><linearGradient id="'+gid+'" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fffaf6"/><stop offset=".55" stop-color="#F7E7CE"/><stop offset="1" stop-color="#ecc9c4"/></linearGradient></defs>'+
+                   '<rect x="1" y="1" width="32" height="22" rx="2.5" fill="url(#'+gid+')" stroke="#b76e79" stroke-width="1"/>'+
+                   '<path d="M1 1 L17 13 L33 1" fill="none" stroke="#b76e79" stroke-width="1" stroke-linejoin="round"/>'+
+                   '<circle cx="17" cy="13" r="3.4" fill="#9a5560"/><circle cx="17" cy="13" r="2.2" fill="none" stroke="#f6d6d8" stroke-width=".5"/>';
+      el.style.filter='drop-shadow(0 3px 5px rgba(122,63,72,.22))';
+      rain.appendChild(el);
+      var H=sec.offsetHeight+80,dur=5+Math.random()*4;
+      function kill(){if(el.parentNode){el.remove();alive--;}}
+      gsap.timeline({onComplete:kill})
+        .fromTo(el,{y:-46,x:0,rotation:(Math.random()-.5)*50,opacity:0},
+                   {y:H,x:(Math.random()-.5)*70,rotation:(Math.random()-.5)*160,
+                    duration:dur,ease:'none'},0)
+        .fromTo(el,{opacity:0},{opacity:.6,duration:dur*.18,ease:'power1.out'},0)
+        .to(el,{opacity:0,duration:dur*.25,ease:'power1.in'},dur*.75);
+    }
+
+    /* Spawn por el ticker de GSAP (no setInterval): se pausa junto con la
+       animación si la pestaña pasa a segundo plano, evitando acumulación. */
+    function scheduleSpawn(){
+      spawnCall=gsap.delayedCall(.52,function(){
+        if(!raining)return;
+        makeEnvelope();
+        scheduleSpawn();
+      });
+    }
+    function startRain(){
+      for(var i=0;i<7;i++)gsap.delayedCall(i*.26,makeEnvelope);
+      scheduleSpawn();
+    }
+    function stopRain(){
+      raining=false;
+      if(spawnCall)spawnCall.kill();
+      gsap.to(rain,{opacity:0,duration:1.1,ease:'power2.out',
+        onComplete:function(){rain.innerHTML='';alive=0;}});
+    }
+
+    function land(){
+      if(landed)return;landed=true;
+      /* Un sobre se detiene: cae desde arriba y se asienta con rebote */
+      gsap.fromTo(btn,
+        {opacity:0,y:-150,rotation:-12,scale:.82},
+        {opacity:1,y:0,rotation:0,scale:1,duration:1.15,ease:'back.out(1.5)',
+         onComplete:function(){
+           if(body)body.classList.add('landed');
+           if(hint)hint.classList.add('show');
+         }});
+    }
+
+    startRain();
+    /* Aterriza cuando la sección queda centrada. Se usa 55% en vez de 'center'
+       porque el reveal genérico desplaza las secciones aún no visibles 28px,
+       y con 'center center' exacto el umbral queda fuera de alcance. */
+    ScrollTrigger.create({trigger:sec,start:'center 55%',once:true,onEnter:land,onEnterBack:land});
+
+    function toggle(e){
+      if(e)e.preventDefault();
+      if(!landed)return;
+      var open=btn.classList.toggle('open');
+      btn.setAttribute('aria-expanded',open?'true':'false');
+      if(open&&body)body.classList.remove('landed');
+      ScrollTrigger.refresh();
+    }
+    btn.addEventListener('click',toggle);
+  })();
+
+
   /* Zoom de fotos con el scroll */
   gsap.fromTo(document.documentElement,{'--hz':1},{'--hz':1.28,ease:'none',
     scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
@@ -1224,7 +1376,7 @@ function initMain(){
     var cards = document.querySelectorAll('.wheel-card');
     var ring  = document.getElementById('wheel-ring');
     if(!ring || cards.length===0) return;
-    var n=cards.length, radius=290, rot=0, vel=0, isDrag=false, startX=0, startRot=0, lastX=0, rafId=null;
+    var n=cards.length, radius=Math.round((170*1.5/2)/Math.sin(Math.PI/cards.length)), rot=0, vel=0, isDrag=false, startX=0, startRot=0, lastX=0, rafId=null;
     cards.forEach(function(card,i){ card.style.transform='rotateY('+(360/n*i)+'deg) translateZ('+radius+'px)'; });
     function setRot(r){ rot=r; gsap.set(ring,{rotateY:rot}); }
     function inertia(){ if(Math.abs(vel)<0.05){vel=0;return;} vel*=0.94; setRot(rot+vel); rafId=requestAnimationFrame(inertia); }
@@ -1234,7 +1386,10 @@ function initMain(){
     ring.addEventListener('touchstart',function(e){ cancelAnimationFrame(rafId); isDrag=true; vel=0; startX=e.touches[0].clientX; startRot=rot; lastX=startX; },{passive:true});
     window.addEventListener('touchmove',function(e){ if(!isDrag)return; var dx=e.touches[0].clientX-startX; vel=(e.touches[0].clientX-lastX)*0.5; lastX=e.touches[0].clientX; setRot(startRot+dx*0.45); },{passive:true});
     window.addEventListener('touchend',function(){ if(!isDrag)return; isDrag=false; rafId=requestAnimationFrame(inertia); });
-    setTimeout(function(){ vel=6; rafId=requestAnimationFrame(inertia); },700);
+    /* giro automático continuo; se pausa mientras arrastran y retoma solo */
+    var AUTO=-0.14;
+    function auto(){ if(!isDrag && Math.abs(vel)<0.05){ setRot(rot+AUTO); } requestAnimationFrame(auto); }
+    requestAnimationFrame(auto);
   })();
 
   /* ── RSVP (panel-invitados API + ?para=&pases=) ── */
