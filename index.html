@@ -20,7 +20,7 @@
 <script>if('scrollRestoration' in history){history.scrollRestoration='manual';}window.scrollTo(0,0);</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Pinyon+Script&family=Cinzel:wght@500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Pinyon+Script&family=Cinzel:wght@500;600&family=Jost:wght@300;400;500&family=Bodoni+Moda:ital,opsz,wght@1,6..96,500;1,6..96,600&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#fdfcfa;
@@ -731,6 +731,37 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 .c3-stage{perspective:900px!important;perspective-origin:50% 30%!important;height:470px!important}
 .c3-ring{top:90px!important}
 .c3-floor{top:298px!important}
+/* ── FOOTER PREMIUM: degradado vivo + nombres en Bodoni ── */
+#footer{position:relative;overflow:hidden;isolation:isolate;padding:120px 24px 46px!important;text-align:center;
+  background:linear-gradient(to bottom,#F7E7CE 0%,#c98a93 9%,#5a2a33 24%,#3a1d23 60%,#24121a 100%)!important}
+#footer::before,#footer::after{display:none!important}
+.ft-mesh{position:absolute;inset:0;z-index:-1;pointer-events:none;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 140px);mask-image:linear-gradient(to bottom,transparent 0,#000 140px)}
+.ft-mesh i{position:absolute;border-radius:50%;filter:blur(40px);opacity:.75;will-change:transform}
+.ft-mesh .b1{width:70vw;max-width:340px;aspect-ratio:1;left:-15%;top:22%;background:radial-gradient(circle,#b76e79 0%,transparent 68%);animation:ftA 16s ease-in-out infinite alternate}
+.ft-mesh .b2{width:80vw;max-width:380px;aspect-ratio:1;right:-25%;top:38%;background:radial-gradient(circle,#c98a93 0%,transparent 66%);animation:ftB 19s ease-in-out infinite alternate}
+.ft-mesh .b3{width:60vw;max-width:300px;aspect-ratio:1;left:20%;bottom:-20%;background:radial-gradient(circle,#F7E7CE 0%,transparent 64%);opacity:.32;animation:ftC 22s ease-in-out infinite alternate}
+.ft-mesh .b4{width:55vw;max-width:260px;aspect-ratio:1;right:5%;top:12%;background:radial-gradient(circle,#8E9091 0%,transparent 66%);opacity:.4;animation:ftA 25s ease-in-out infinite alternate-reverse}
+@keyframes ftA{0%{transform:translate3d(0,0,0) scale(1)}100%{transform:translate3d(28%,-14%,0) scale(1.25)}}
+@keyframes ftB{0%{transform:translate3d(0,0,0) scale(1.1)}100%{transform:translate3d(-30%,12%,0) scale(.9)}}
+@keyframes ftC{0%{transform:translate3d(0,0,0) scale(.95)}100%{transform:translate3d(-18%,-26%,0) scale(1.2)}}
+.ft-in{position:relative;max-width:420px;margin:0 auto}
+.ft-kicker{font-family:'Bodoni Moda',serif;font-style:italic;font-weight:500;font-size:clamp(17px,4.6vw,20px);color:#f6d6d8;line-height:1.5}
+.ft-orn{display:flex;align-items:center;justify-content:center;gap:10px;margin:18px auto 8px}
+.ft-orn i{width:60px;height:1px;background:linear-gradient(90deg,transparent,#e9b7bd)}
+.ft-orn i:last-child{background:linear-gradient(90deg,#e9b7bd,transparent)}
+.ft-orn b{width:7px;height:7px;transform:rotate(45deg);background:linear-gradient(135deg,#F7E7CE,#b76e79)}
+.ft-names{margin:6px 0 0;display:flex;flex-direction:column;align-items:center;line-height:1.08}
+.ft-names span{font-family:'Bodoni Moda',serif;font-style:italic;font-weight:600;font-size:clamp(38px,11.5vw,58px);letter-spacing:.01em;white-space:nowrap;
+  padding:.08em .3em;background:linear-gradient(110deg,#e9b7bd 0%,#fbe9e4 22%,#b76e79 42%,#F7E7CE 58%,#d98f9a 78%,#fbe9e4 100%);background-size:250% 100%;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#f0c9cd;animation:ftShine 7s ease-in-out infinite alternate}
+.ft-names em{font-family:'Pinyon Script',cursive;font-style:normal;font-size:clamp(30px,8vw,40px);color:#e9b7bd;margin:2px 0;opacity:.9}
+@keyframes ftShine{0%{background-position:0% 50%}100%{background-position:100% 50%}}
+.ft-date{font-family:'Cinzel',serif;font-weight:600;font-size:clamp(15px,4.2vw,18px);letter-spacing:.32em;color:#F7E7CE;margin-top:22px}
+.ft-city{font-family:'Jost',sans-serif;font-weight:500;font-size:15px;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,214,216,.85);margin-top:8px}
+.ft-hr{width:70px;height:1px;margin:30px auto 18px;background:linear-gradient(90deg,transparent,#e9b7bd,transparent)}
+.ft-credit{font-family:'Jost',sans-serif;font-weight:400;font-size:14px;letter-spacing:.06em;color:rgba(246,214,216,.75);text-decoration:none}
+@media(prefers-reduced-motion:reduce){.ft-mesh i,.ft-names span{animation:none}}
 </style>
 </head>
 <body>
@@ -1133,22 +1164,16 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 
   <!-- FOOTER -->
   <footer id="footer">
-    <!-- Premium M&L Monogram -->
-    <div class="footer-monogram-wrap rv">
-      <div class="footer-initials">
-        <span class="fi-letter">M</span>
-        <span class="fi-amp">&amp;</span>
-        <span class="fi-letter">L</span>
-      </div>
-      <div class="footer-orn-line">
-        <div class="fo-line"></div>
-        <div class="fo-diamond"></div>
-        <div class="fo-line"></div>
-      </div>
+    <div class="ft-mesh" aria-hidden="true"><i class="b1"></i><i class="b2"></i><i class="b3"></i><i class="b4"></i></div>
+    <div class="ft-in">
+      <p class="ft-kicker rv">Gracias por ser parte de nuestra historia</p>
+      <div class="ft-orn rv"><i></i><b></b><i></i></div>
+      <h2 class="ft-names rv"><span>Maria Luisa</span><em>&amp;</em><span>Mark Anthony</span></h2>
+      <p class="ft-date rv">24 · Abril · 2027</p>
+      <p class="ft-city rv">Tijuana, Baja California</p>
+      <div class="ft-hr"></div>
+      <a href="https://www.instagram.com/elysium.invitaciones" target="_blank" rel="noopener" class="ft-credit">Diseño por @elysium.invitaciones</a>
     </div>
-    <div class="footer-date rv">24 · Abril · 2027</div>
-    <div class="footer-hr"></div>
-    <a href="https://www.instagram.com/elysium.invitaciones" target="_blank" rel="noopener" class="footer-credit rv">@elysium.invitaciones</a>
   </footer>
 
 </div>
