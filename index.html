@@ -578,7 +578,8 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 
 /* ════════ PAQUETE DE EFECTOS PREMIUM ════════ */
 /* ── HERO: foto con deriva continua + brillo (paquete premium) ── */
-.hero-bg{inset:-3% -5% -16% -5%!important;background-image:none!important;animation:none!important;overflow:hidden;will-change:transform,filter}
+.hero-bg{inset:-3% -5% -16% -5%!important;background-image:none!important;animation:none!important;overflow:hidden;will-change:transform}
+#hero{background:#fdfcfa}
 .hero-drift{position:absolute;inset:-6%;background:url('portada.jpg') center 30%/cover no-repeat;animation:heroDrift 26s ease-in-out infinite alternate;will-change:transform}
 @keyframes heroDrift{0%{transform:translate3d(0,0,0) scale(1.02)}50%{transform:translate3d(-1.8%,1.2%,0) scale(1.07)}100%{transform:translate3d(1.5%,-1.5%,0) scale(1.1)}}
 .hero-shine{position:absolute;inset:0;z-index:1;pointer-events:none;mix-blend-mode:soft-light;background:radial-gradient(ellipse 60% 40% at 30% 30%,rgba(255,240,236,.55) 0%,transparent 70%),linear-gradient(115deg,transparent 35%,rgba(255,244,240,.35) 50%,transparent 65%);background-size:100% 100%,260% 100%;animation:heroShine 9s ease-in-out infinite}
@@ -724,7 +725,12 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 .hero-amp{display:inline-block;margin-top:0;margin-bottom:.2em}
 .dc-figs::before{display:none!important}
 .dc-fig figcaption{color:#9a5560!important}
-.ink-sec .heading,.ink-sec .heading-sm,.ink-sec .loc-venue{filter:drop-shadow(0 0 6px rgba(253,250,246,.95)) drop-shadow(0 0 2px rgba(253,250,246,.9))}
+.ink-sec .heading,.ink-sec .heading-sm,.ink-sec .loc-venue,.ink-sec .intro-names{background-image:linear-gradient(135deg,#5a2a33 0%,#8a4a55 30%,#b76e79 50%,#8a4a55 70%,#5a2a33 100%)!important;filter:drop-shadow(0 0 10px rgba(253,250,246,1)) drop-shadow(0 0 4px rgba(253,250,246,1)) drop-shadow(0 0 1px rgba(253,250,246,1))}
+.ink-sec .eyebrow{color:#7a3f48!important;font-weight:600}
+.c3-card{backface-visibility:visible!important;-webkit-backface-visibility:visible!important}
+.c3-stage{perspective:900px!important;perspective-origin:50% 30%!important;height:470px!important}
+.c3-ring{top:90px!important}
+.c3-floor{top:298px!important}
 </style>
 </head>
 <body>
@@ -1314,104 +1320,11 @@ function initMain(){
 
   /* Nombres del hero: suben y se difuminan con el scroll */
   gsap.to('#hero .hero-content',{y:-110,opacity:0,filter:'blur(10px)',ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom 25%',scrub:.6}});
-  gsap.to('#hero .hero-bg',{y:-70,filter:'blur(5px) brightness(.92)',ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:.6}});
+  gsap.to('#hero .hero-bg',{y:-70,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:.6}});
   initSectionFades();
   initEnvRain();
   initCarousel3D();
   initRsvp2();
-
-  /* Nombres del hero: suben y se difuminan con el scroll */
-  gsap.to('#hero .hero-content',{y:-110,opacity:0,filter:'blur(10px)',ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom 25%',scrub:.6}});
-  gsap.to('#hero .hero-bg',{y:-70,filter:'blur(5px) brightness(.92)',ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:.6}});
-  initSectionFades();
-  initEnvRain();
-  initCarousel3D();
-  initRsvp2();
-
-  /* Lluvia de sobres — cae hasta que la sección se centra, ahí aterriza uno */
-  (function(){
-    var sec=document.getElementById('regalos'),rain=document.getElementById('envRain'),
-        btn=document.getElementById('envGift'),body=document.getElementById('envGiftBody'),
-        hint=document.getElementById('envGiftHint');
-    if(!sec||!rain||!btn)return;
-    var raining=true,landed=false,spawnCall=null,alive=0;
-    var MAX_ALIVE=18;
-
-    function makeEnvelope(){
-      if(alive>=MAX_ALIVE)return;
-      alive++;
-      var el=document.createElementNS('http://www.w3.org/2000/svg','svg');
-      el.setAttribute('viewBox','0 0 34 24');
-      el.setAttribute('class','env-rain-item');
-      var w=16+Math.random()*16;
-      el.style.width=w+'px';el.style.height=(w*24/34)+'px';
-      el.style.left=(Math.random()*100)+'%';
-      var gid='eg'+Math.random().toString(36).slice(2,7);
-      el.innerHTML='<defs><linearGradient id="'+gid+'" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fffaf6"/><stop offset=".55" stop-color="#F7E7CE"/><stop offset="1" stop-color="#ecc9c4"/></linearGradient></defs>'+
-                   '<rect x="1" y="1" width="32" height="22" rx="2.5" fill="url(#'+gid+')" stroke="#b76e79" stroke-width="1"/>'+
-                   '<path d="M1 1 L17 13 L33 1" fill="none" stroke="#b76e79" stroke-width="1" stroke-linejoin="round"/>'+
-                   '<circle cx="17" cy="13" r="3.4" fill="#9a5560"/><circle cx="17" cy="13" r="2.2" fill="none" stroke="#f6d6d8" stroke-width=".5"/>';
-      el.style.filter='drop-shadow(0 3px 5px rgba(122,63,72,.22))';
-      rain.appendChild(el);
-      var H=sec.offsetHeight+80,dur=5+Math.random()*4;
-      function kill(){if(el.parentNode){el.remove();alive--;}}
-      gsap.timeline({onComplete:kill})
-        .fromTo(el,{y:-46,x:0,rotation:(Math.random()-.5)*50,opacity:0},
-                   {y:H,x:(Math.random()-.5)*70,rotation:(Math.random()-.5)*160,
-                    duration:dur,ease:'none'},0)
-        .fromTo(el,{opacity:0},{opacity:.6,duration:dur*.18,ease:'power1.out'},0)
-        .to(el,{opacity:0,duration:dur*.25,ease:'power1.in'},dur*.75);
-    }
-
-    /* Spawn por el ticker de GSAP (no setInterval): se pausa junto con la
-       animación si la pestaña pasa a segundo plano, evitando acumulación. */
-    function scheduleSpawn(){
-      spawnCall=gsap.delayedCall(.52,function(){
-        if(!raining)return;
-        makeEnvelope();
-        scheduleSpawn();
-      });
-    }
-    function startRain(){
-      for(var i=0;i<7;i++)gsap.delayedCall(i*.26,makeEnvelope);
-      scheduleSpawn();
-    }
-    function stopRain(){
-      raining=false;
-      if(spawnCall)spawnCall.kill();
-      gsap.to(rain,{opacity:0,duration:1.1,ease:'power2.out',
-        onComplete:function(){rain.innerHTML='';alive=0;}});
-    }
-
-    function land(){
-      if(landed)return;landed=true;
-      /* Un sobre se detiene: cae desde arriba y se asienta con rebote */
-      gsap.fromTo(btn,
-        {opacity:0,y:-150,rotation:-12,scale:.82},
-        {opacity:1,y:0,rotation:0,scale:1,duration:1.15,ease:'back.out(1.5)',
-         onComplete:function(){
-           if(body)body.classList.add('landed');
-           if(hint)hint.classList.add('show');
-         }});
-    }
-
-    startRain();
-    /* Aterriza cuando la sección queda centrada. Se usa 55% en vez de 'center'
-       porque el reveal genérico desplaza las secciones aún no visibles 28px,
-       y con 'center center' exacto el umbral queda fuera de alcance. */
-    ScrollTrigger.create({trigger:sec,start:'center 55%',once:true,onEnter:land,onEnterBack:land});
-
-    function toggle(e){
-      if(e)e.preventDefault();
-      if(!landed)return;
-      var open=btn.classList.toggle('open');
-      btn.setAttribute('aria-expanded',open?'true':'false');
-      if(open&&body)body.classList.remove('landed');
-      ScrollTrigger.refresh();
-    }
-    btn.addEventListener('click',toggle);
-  })();
-
 
   /* Zoom de fotos con el scroll */
   gsap.fromTo('#galeria',{'--gz':1.3},{'--gz':1,ease:'none',
@@ -1747,12 +1660,12 @@ function initCarousel3D(){
 
   function layout(){
     var w=cards[0].offsetWidth||150;
-    var radius=Math.round((w*1.5/2)/Math.sin(Math.PI/n));
+    var radius=Math.round((w*1.1/2)/Math.sin(Math.PI/n));
     cards.forEach(function(c,i){c.style.transform='rotateY('+(360/n*i)+'deg) translateZ('+radius+'px)';});
-    ring.style.transform='translateZ('+(-radius)+'px) rotateY('+rot+'deg)';
+    ring.style.transform='rotateX(-9deg) translateZ('+(-radius)+'px) rotateY('+rot+'deg)';
     ring._r=radius;
   }
-  function apply(){ring.style.transform='translateZ('+(-ring._r)+'px) rotateY('+rot+'deg)';}
+  function apply(){ring.style.transform='rotateX(-9deg) translateZ('+(-ring._r)+'px) rotateY('+rot+'deg)';}
   layout();
   var rz;window.addEventListener('resize',function(){clearTimeout(rz);rz=setTimeout(layout,150);});
 
