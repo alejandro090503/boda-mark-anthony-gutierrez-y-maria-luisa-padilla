@@ -20,7 +20,7 @@
 <script>if('scrollRestoration' in history){history.scrollRestoration='manual';}window.scrollTo(0,0);</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Pinyon+Script&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Pinyon+Script&family=Cinzel:wght@500;600&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#fdfcfa;
@@ -509,6 +509,43 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 .footer-orn-line .fo-diamond{width:5px;height:5px;background:#9a5560;transform:rotate(45deg)}
 
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+/* ── Ajustes Maria Luisa & Mark Anthony ── */
+.intro-logo{animation:levitar 5.5s ease-in-out infinite}
+@keyframes levitar{0%,100%{translate:0 0}50%{translate:0 -10px}}
+.intro-names{font-weight:700!important;-webkit-text-stroke:.6px #9a5560}
+.verse-interlude{margin-top:36px}
+.verse-interlude p{font-size:clamp(17px,4.4vw,19px)}
+.pad-slider{display:grid;margin-top:14px}
+.pad-slide{grid-area:1/1;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity 1s ease,transform 1s ease,visibility 0s 1s}
+.pad-slide.on{opacity:1;visibility:visible;transform:none;transition:opacity 1s ease .9s,transform 1s ease .9s,visibility 0s .9s}
+/* Recintos en Cinzel */
+.loc-venue{font-family:'Cinzel',serif!important;font-weight:600!important;font-size:clamp(19px,5.2vw,23px)!important;letter-spacing:.06em!important;line-height:1.35!important;
+  background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#9a5560}
+
+/* Personas (padres): ondean como tela, cada una a su ritmo */
+.fam-card{animation:ondear 6.5s ease-in-out infinite;transform-origin:50% 0}
+.fam-card + .fam-card{animation-duration:7.3s;animation-delay:-2.4s}
+@keyframes ondear{0%,100%{rotate:0deg;translate:0 0}25%{rotate:.9deg;translate:2px 2px}75%{rotate:-.9deg;translate:-2px 1px}}
+
+/* Padrinos: levitan con sombra que respira */
+.fam-padrinos{animation:levitarCard 5s ease-in-out infinite}
+@keyframes levitarCard{0%,100%{translate:0 0;box-shadow:0 6px 18px rgba(122,63,72,.08)}50%{translate:0 -9px;box-shadow:0 18px 34px rgba(122,63,72,.16)}}
+
+/* Ubicaciones: flotan con leve balanceo en 3D */
+.loc-card{animation:flotar 7s ease-in-out infinite}
+.loc-card + .loc-card{animation-delay:-3.5s}
+@keyframes flotar{0%,100%{translate:0 0;rotate:0deg}33%{translate:0 -6px;rotate:-.6deg}66%{translate:0 -3px;rotate:.6deg}}
+
+/* Botones de mapa: brillo que recorre + pulso que invita a tocar */
+.btn-map,.btn-cal{position:relative;overflow:hidden;animation:invitar 2.6s ease-in-out infinite}
+.btn-map::after,.btn-cal::after{content:'';position:absolute;top:0;left:-60%;width:45%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(246,214,216,.55),transparent);animation:brillo 2.6s ease-in-out infinite;pointer-events:none}
+@keyframes invitar{0%,100%{scale:1;box-shadow:0 0 0 0 rgba(183,110,121,.45)}50%{scale:1.035;box-shadow:0 0 0 10px rgba(183,110,121,0)}}
+@keyframes brillo{0%{left:-60%}55%,100%{left:130%}}
+.btn-map svg{animation:rebote 2.6s ease-in-out infinite}
+@keyframes rebote{0%,40%,100%{translate:0 0}20%{translate:0 -4px}}
+@media(prefers-reduced-motion:reduce){.fam-card,.fam-padrinos,.loc-card,.btn-map,.btn-cal,.btn-map svg,.intro-logo{animation:none!important}}
+#hero .hero-content{will-change:transform,opacity,filter}
 </style>
 </head>
 <body>
@@ -543,11 +580,9 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
       <div class="hero-corner hc-br"><svg viewBox="0 0 24 24" fill="none"><path d="M1 1L1 11M1 1L11 1" stroke="#9a5560" stroke-width="1.4" opacity=".7"/></svg></div>
     </div>
     <div class="hero-content">
-      <span class="hero-tag rv">Tijuana, B.C.</span>
       <span class="hero-bride rv">Maria Luisa</span>
       <span class="hero-amp rv">&amp;</span>
       <span class="hero-groom rv">Mark Anthony</span>
-      <span class="hero-date rv">Sábado · 24 de Abril · 2027</span>
     </div>
     <div class="scroll-hint" id="scrollHint">
       <div class="scroll-hint-line"></div>
@@ -572,9 +607,6 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
     <p class="stagger-child" style="font-family:'Cormorant Garamond',serif;font-weight:700;font-size:16px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);line-height:1.7;margin-top:16px">Sábado 24 de Abril de 2027</p>
     <div class="invite-verse stagger-child">
       <p class="invite-verse-rut">A dónde tú vayas, iré yo.<br>Dónde tú vivas, viviré yo.<br>Tu pueblo será mi pueblo<br>y tu Dios será mi Dios.</p>
-      <p>Porque el amor no solamente es sentir, es elegir.</p>
-      <p>El amor no promete perfección, promete permanencia, promete quedarse cuando todos se van.</p>
-      <p class="invite-verse-end">Promete elegir el mismo corazón una vez más, porque cuando Dios une dos corazones con verdad, ni el tiempo, ni la distancia los podrá separar.</p>
     </div>
   </section>
 
@@ -608,6 +640,7 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
     </div>
     </div>
     <span class="cd-para">Para el Gran Día</span>
+    <div class="invite-verse verse-interlude rv"><p>Porque el amor no solamente es sentir, es elegir.</p></div>
   </section>
 
   <!-- NUESTRAS FAMILIAS -->
@@ -636,27 +669,28 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
     </div>
     <div class="fam-padrinos rv" style="max-width:340px;margin:18px auto 0">
       <span class="fam-role-lbl" style="font-size:17px">Nuestros Padrinos</span>
-      <div style="margin-top:14px">
-        <span class="italiana" style="display:block;font-size:12px;letter-spacing:.22em;color:var(--gold);margin-bottom:8px">Velación</span>
-        <span class="fam-name" style="font-size:24px">Marita Zoraida<br>Alvarez Padilla</span>
-        <div class="fam-and"><div class="fam-and-line"></div><span class="fam-and-txt">y</span><div class="fam-and-line"></div></div>
-        <span class="fam-name" style="font-size:24px">Jose Donato<br>Anguiano Orozco</span>
+      <div class="pad-slider">
+      <div class="pad-slide">
+          <span class="italiana" style="display:block;font-size:12px;letter-spacing:.22em;color:var(--gold);margin-bottom:8px">Velación</span>
+          <span class="fam-name" style="font-size:24px">Marita Zoraida<br>Alvarez Padilla</span>
+          <div class="fam-and"><div class="fam-and-line"></div><span class="fam-and-txt">y</span><div class="fam-and-line"></div></div>
+          <span class="fam-name" style="font-size:24px">Jose Donato<br>Anguiano Orozco</span>
       </div>
-      <div style="border-top:1px solid var(--border);margin:20px 0"></div>
-      <div>
-        <span class="italiana" style="display:block;font-size:12px;letter-spacing:.22em;color:var(--gold);margin-bottom:8px">Lazo &amp; Arras</span>
-        <span class="fam-name" style="font-size:24px">Stephanie E.<br>Frasquillo Gtz.</span>
-        <div class="fam-and"><div class="fam-and-line"></div><span class="fam-and-txt">y</span><div class="fam-and-line"></div></div>
-        <span class="fam-name" style="font-size:24px">Brenda L.<br>Gallardo Sanchez</span>
+        <div class="pad-slide">
+          <span class="italiana" style="display:block;font-size:12px;letter-spacing:.22em;color:var(--gold);margin-bottom:8px">Lazo &amp; Arras</span>
+          <span class="fam-name" style="font-size:24px">Stephanie E.<br>Frasquillo Gtz.</span>
+          <div class="fam-and"><div class="fam-and-line"></div><span class="fam-and-txt">y</span><div class="fam-and-line"></div></div>
+          <span class="fam-name" style="font-size:24px">Brenda L.<br>Gallardo Sanchez</span>
       </div>
-      <div style="border-top:1px solid var(--border);margin:20px 0"></div>
-      <div>
-        <span class="italiana" style="display:block;font-size:12px;letter-spacing:.22em;color:var(--gold);margin-bottom:8px">Ramos</span>
-        <span class="fam-name" style="font-size:24px">Mariana E.<br>Gutirrez Bernal</span>
-        <div class="fam-and"><div class="fam-and-line"></div><span class="fam-and-txt">y</span><div class="fam-and-line"></div></div>
-        <span class="fam-name" style="font-size:24px">Charlize<br>Santos Gutierrez</span>
+        <div class="pad-slide">
+          <span class="italiana" style="display:block;font-size:12px;letter-spacing:.22em;color:var(--gold);margin-bottom:8px">Ramos</span>
+          <span class="fam-name" style="font-size:24px">Mariana E.<br>Gutirrez Bernal</span>
+          <div class="fam-and"><div class="fam-and-line"></div><span class="fam-and-txt">y</span><div class="fam-and-line"></div></div>
+          <span class="fam-name" style="font-size:24px">Charlize<br>Santos Gutierrez</span>
+      </div>
       </div>
     </div>
+    <div class="invite-verse verse-interlude rv"><p>El amor no promete perfección, promete permanencia, promete quedarse cuando todos se van.</p></div>
   </section>
 
   <!-- UBICACIÓN -->
@@ -671,7 +705,7 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
     <h2 class="heading-sm">Ubicación</h2>
     <p class="sub" style="margin-top:6px;color:var(--gold);font-weight:600">Tijuana, B.C.</p>
 
-    <div class="card rv" style="max-width:380px;margin:24px auto 0">
+    <div class="card loc-card rv" style="max-width:380px;margin:24px auto 0">
       <span class="loc-venue-lbl">Ceremonia Religiosa</span>
       <div class="loc-row" style="border-bottom:none;padding:6px 0">
         <svg class="loc-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -684,7 +718,7 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
       </a>
     </div>
 
-    <div class="card rv" style="max-width:380px;margin:14px auto 0">
+    <div class="card loc-card rv" style="max-width:380px;margin:14px auto 0">
       <span class="loc-venue-lbl">Recepción</span>
       <div class="loc-row" style="border-bottom:none;padding:6px 0">
         <svg class="loc-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -836,6 +870,7 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
       </div>
     </div>
     <p class="gal-hint rv">Arrastra para girar</p>
+    <div class="invite-verse verse-interlude rv"><p class="invite-verse-end">Promete elegir el mismo corazón una vez más, porque cuando Dios une dos corazones con verdad, ni el tiempo, ni la distancia los podrá separar.</p></div>
   </section>
 
   <!-- MESA DE REGALOS -->
@@ -1149,6 +1184,10 @@ function initMain(){
   let hintHidden=false;
   window.addEventListener('scroll',()=>{if(!hintHidden&&window.scrollY>60){hintHidden=true;hint.classList.add('hidden');}},{passive:true});
 
+  /* Nombres del hero: suben y se difuminan con el scroll */
+  gsap.fromTo('#hero .hero-content',{y:0,autoAlpha:1,filter:'blur(0px)'},{y:-140,autoAlpha:0,filter:'blur(12px)',ease:'none',
+    scrollTrigger:{trigger:'#hero',start:'top top',end:'60% top',scrub:true}});
+
   /* Zoom de fotos con el scroll */
   gsap.fromTo(document.documentElement,{'--hz':1},{'--hz':1.28,ease:'none',
     scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
@@ -1372,6 +1411,13 @@ function initMain(){
   })();
 
 }
+
+/* ── Padrinos uno por uno ── */
+(function(){
+  var sl=document.querySelectorAll('.pad-slide'); if(!sl.length) return;
+  var i=0; sl[0].classList.add('on');
+  setInterval(function(){ sl[i].classList.remove('on'); i=(i+1)%sl.length; sl[i].classList.add('on'); },4200);
+})();
 
 /* ── INIT ── */
 document.addEventListener('DOMContentLoaded',()=>{
