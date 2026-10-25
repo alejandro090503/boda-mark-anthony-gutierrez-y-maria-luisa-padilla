@@ -762,6 +762,19 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
 .ft-hr{width:70px;height:1px;margin:30px auto 18px;background:linear-gradient(90deg,transparent,#e9b7bd,transparent)}
 .ft-credit{font-family:'Jost',sans-serif;font-weight:400;font-size:14px;letter-spacing:.06em;color:rgba(246,214,216,.75);text-decoration:none}
 @media(prefers-reduced-motion:reduce){.ft-mesh i,.ft-names span{animation:none}}
+/* ── SOLO ADULTOS ── */
+#adultos{background:radial-gradient(ellipse 80% 60% at 50% 55%,rgba(247,231,206,.9) 0%,#fdfcfa 70%)}
+.ad-card{position:relative;max-width:360px;margin:26px auto 0;padding:34px 26px 30px;border-radius:22px;background:linear-gradient(160deg,#fffaf6 0%,#F7E7CE 100%);
+  border:1px solid rgba(183,110,121,.45);box-shadow:0 18px 40px rgba(122,63,72,.14),inset 0 0 0 6px #fffaf6,inset 0 0 0 7px rgba(183,110,121,.25);animation:levitarCard 6s ease-in-out infinite}
+.ad-medal{position:relative;width:96px;height:96px;margin:0 auto 18px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fffaf6;
+  background:radial-gradient(circle at 35% 30%,#d98f9a,#9a5560 70%);box-shadow:0 8px 20px rgba(122,63,72,.3),0 0 0 6px rgba(240,201,205,.45);animation:adGlow 3s ease-in-out infinite}
+.ad-medal svg{width:56px;height:56px}
+.ad-medal b{position:absolute;right:-6px;bottom:-4px;font-family:'Jost',sans-serif;font-weight:500;font-size:15px;letter-spacing:.04em;color:#6e3640;background:#fffaf6;border:1px solid #b76e79;border-radius:50px;padding:4px 10px}
+@keyframes adGlow{0%,100%{box-shadow:0 8px 20px rgba(122,63,72,.3),0 0 0 6px rgba(240,201,205,.45)}50%{box-shadow:0 8px 20px rgba(122,63,72,.3),0 0 0 12px rgba(240,201,205,.15),0 0 26px 6px rgba(233,183,189,.55)}}
+.ad-txt{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:21px;line-height:1.55;color:#3a2a2e}
+.ad-txt strong{font-weight:700;color:#7a3f48}
+.ad-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:18px;line-height:1.6;color:#4a3a3e;margin-top:12px}
+@media(prefers-reduced-motion:reduce){.ad-card,.ad-medal{animation:none}}
 </style>
 </head>
 <body>
@@ -1127,6 +1140,27 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
     </div>
   </section>
 
+  <!-- SOLO ADULTOS -->
+  <section id="adultos" class="sec rv" style="text-align:center" data-top="#fdfcfa" data-bot="#fdfcfa">
+    <span class="eyebrow">Una noche para nosotros</span>
+    <h2 class="heading-sm">Solo Adultos</h2>
+    <div class="orn" style="margin-top:14px"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
+    <div class="ad-card">
+      <div class="ad-medal" aria-hidden="true">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 10 h10 l-1 14 q-1 6-4 6 q-3 0-4-6 Z" transform="rotate(-14 25 20)"/>
+          <path d="M34 10 h10 l-1 14 q-1 6-4 6 q-3 0-4-6 Z" transform="rotate(14 39 20)"/>
+          <path d="M23 30 l-2 18 M17 49 h9" transform="rotate(-14 25 20)"/>
+          <path d="M41 30 l2 18 M38 49 h9" transform="rotate(14 39 20)"/>
+          <path d="M32 4 v4 M27 6 l2 3 M37 6 l-2 3" opacity=".8"/>
+        </svg>
+        <b>+18</b>
+      </div>
+      <p class="ad-txt">Con mucho cariño hemos planeado este día para compartirlo <strong>únicamente con adultos</strong>.</p>
+      <p class="ad-sub">Agradecemos de corazón su comprensión y que nos acompañen a celebrar esta noche especial.</p>
+    </div>
+  </section>
+
   <!-- RSVP -->
   <section id="rsvp" class="rv2-sec ink-sec" data-top="#F7E7CE" data-bot="#F7E7CE">
     <div class="ink-bg flip" aria-hidden="true" style="--ink-o:.7"><i style="background-image:url('ink/ink-footer.webp')"></i></div>
@@ -1141,10 +1175,6 @@ body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',ser
       <div class="rv2-pase" id="rv2MenoresBox" style="display:none"><span class="rv2-pases-label">Menores</span><span class="rv2-pases-num" id="rv2MenoresNum">0</span></div>
     </div>
     <p class="rv2-dl">Confirma antes del viernes 29 de enero de 2027</p>
-    <div class="no-kids" style="text-align:left;max-width:440px;margin:22px auto 0">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/></svg>
-      <span>Con mucho cariño, este evento es solo para adultos. Agradecemos su comprensión.</span>
-    </div>
     <div class="rv2-bandeja" id="rv2Bandeja">
       <div class="rv2-toggle">
         <button class="rv2-toggle-btn" id="rv2Yes" type="button">¡Con mucho gusto!</button>
